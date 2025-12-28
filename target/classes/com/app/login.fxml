@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.app.controller.LoginController"
+           style="-fx-background-color: linear-gradient(to bottom right, #0a043c, #1b1b5f);">
+
+    <VBox spacing="22" alignment="CENTER">
+
+        <!-- LOGO -->
+        <ImageView fitWidth="120" preserveRatio="true">
+            <image>
+                <Image url="@images/logo-up.png"/>
+            </image>
+        </ImageView>
+
+        <!-- JUDUL -->
+        <VBox spacing="6" alignment="CENTER">
+            <Label text="LOGIN SISTEM PERPUSTAKAAN"
+                   style="-fx-text-fill:white; -fx-font-size:22; -fx-font-weight:bold;"/>
+
+            <Label text="FAKULTAS TEKNIK UNIVERSITAS PANCASILA"
+                   style="-fx-text-fill:white; -fx-font-size:15;"/>
+        </VBox>
+
+        <!-- FORM LOGIN -->
+        <VBox spacing="14"
+              alignment="CENTER"
+              maxWidth="380"
+              prefWidth="380">
+
+            <!-- USERNAME -->
+            <TextField fx:id="txtUsername"
+                       promptText="Username"
+                       prefHeight="44"/>
+
+            <!-- PASSWORD -->
+            <StackPane prefHeight="44" maxWidth="380">
+
+                <!-- PASSWORD TERSEMBUNYI -->
+                <PasswordField fx:id="txtPassword"
+                            promptText="Password"
+                            prefHeight="44"/>
+
+                <!-- PASSWORD TERLIHAT -->
+                <TextField fx:id="txtPasswordVisible"
+                        promptText="Password"
+                        prefHeight="44"
+                        visible="false"
+                        managed="false"/>
+
+                <!-- SHOW / HIDE TEXT -->
+                <Label fx:id="lblTogglePassword"
+                        text="Show"
+                        pickOnBounds="true"
+                        StackPane.alignment="CENTER_RIGHT"
+                        style="-fx-text-fill:#0a043c;
+                                -fx-font-weight:bold;
+                                -fx-cursor: hand;
+                                -fx-translate-x:-10;"/>
+
+            </StackPane>
+
+
+            <!-- LOGIN BUTTON -->
+            <Button fx:id="btnLogin"
+                    text="LOGIN"
+                    prefWidth="160"
+                    prefHeight="44"
+                    style="-fx-background-color:white;
+                           -fx-font-weight:bold;"
+                    onAction="#handleLogin"/>
+        </VBox>
+
+    </VBox>
+
+</StackPane>

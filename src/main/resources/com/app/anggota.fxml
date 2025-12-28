@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.controller.AnggotaController">
+
+    <!-- ================= SIDEBAR ================= -->
+        <left>
+            <VBox fx:id="sidebarContainer"/>
+        </left>
+
+
+    <!-- ================= CONTENT ================= -->
+    <center>
+        <VBox spacing="20"
+              style="-fx-background-color: linear-gradient(to bottom right, #0a043c, #1b1b5f);
+                     -fx-padding: 30;">
+
+            <!-- TITLE -->
+            <Label text="ANGGOTA"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 36;
+                          -fx-font-weight: bold;"/>
+
+            <!-- SEARCH -->
+            <TextField fx:id="txtSearch" 
+                       promptText="Search anggota..."
+                       style="-fx-font-size: 16;
+                              -fx-background-radius: 4;
+                              -fx-padding: 10;"
+                       maxWidth="600"/>
+
+            <!-- TABLE -->
+            <TableView fx:id="tblAnggota"
+                       prefHeight="450"
+                       style="-fx-background-color: white;">
+
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="70"/>
+                    <TableColumn fx:id="colNama" text="Nama" prefWidth="180"/>
+                    <TableColumn fx:id="colJurusan" text="Jurusan" prefWidth="160"/>
+                    <TableColumn fx:id="colNpm" text="NPM" prefWidth="130"/>
+                    <TableColumn fx:id="colNoHp" text="No HP" prefWidth="140"/>
+                    <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+                </columns>
+
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

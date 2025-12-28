@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.controller.DendaController"
+            style="-fx-background-color:#0a043c;">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <VBox fx:id="sidebarContainer"/>
+    </left>
+
+    <!-- ================= CONTENT ================= -->
+    <center>
+        <VBox spacing="18" style="-fx-padding:28;">
+
+            <!-- JUDUL -->
+            <Label text="DENDA"
+                   style="-fx-text-fill:white; -fx-font-size:30; -fx-font-weight:bold;"/>
+
+            <!-- FORM CEK DENDA -->
+            <VBox spacing="12"
+                  style="-fx-background-color:white; -fx-background-radius:10; -fx-padding:20;">
+
+                <GridPane hgap="12" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="160"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <Label text="Nama Lengkap" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNama"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"
+                               editable="true" disable="false"/>
+
+                    <Label text="NPM" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNpm"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"
+                               editable="true" disable="false"/>
+
+                    <Label text="Tanggal Peminjaman" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="dpTglPinjam"
+                                GridPane.rowIndex="2" GridPane.columnIndex="1"
+                                disable="false"/>
+                </GridPane>
+
+                <HBox spacing="12">
+                    <Button text="CEK STATUS DENDA"
+                            onAction="#handleCekDenda"
+                            prefHeight="42"
+                            style="-fx-background-color:#b3ecff; -fx-font-weight:bold;"/>
+
+                    <Button fx:id="btnTandaiBayar"
+                            text="TANDAI SUDAH BAYAR"
+                            onAction="#handleTandaiSudahBayar"
+                            prefHeight="42"
+                            disable="true"
+                            style="-fx-background-color:#ffffff; -fx-font-weight:bold;"/>
+                </HBox>
+            </VBox>
+
+            <!-- HASIL (TABEL) -->
+            <VBox spacing="8"
+                  style="-fx-background-color:white; -fx-background-radius:10; -fx-padding:14;">
+
+                <Label fx:id="lblStatus"
+                       text=""
+                       style="-fx-text-fill:#0a043c; -fx-font-size:14; -fx-font-weight:bold;"/>
+
+                <TableView fx:id="tblHasil" prefHeight="180">
+                    <columns>
+                        <TableColumn fx:id="colKey" text="Keterangan" prefWidth="220"/>
+                        <TableColumn fx:id="colValue" text="Nilai" prefWidth="520"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

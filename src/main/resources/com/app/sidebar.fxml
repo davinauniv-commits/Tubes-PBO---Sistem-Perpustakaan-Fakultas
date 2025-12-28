@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.app.controller.SidebarController"
+      prefWidth="240"
+      spacing="16"
+      alignment="TOP_CENTER"
+      fillWidth="true"
+      style="-fx-background-color:#ffffff; -fx-padding:22;">
+
+    <!-- Header Sidebar -->
+    <VBox spacing="6" alignment="CENTER">
+        <ImageView fitWidth="60" fitHeight="60" preserveRatio="true">
+            <image>
+                <Image url="@/com/app/images/logo-up.png"/>
+            </image>
+        </ImageView>
+
+        <Label text="Universitas Pancasila"
+               style="-fx-font-size:15px; -fx-font-weight:bold;"/>
+
+        <Label text="Fakultas Teknik"
+               style="-fx-font-size:13px; -fx-text-fill:#555555;"/>
+    </VBox>
+
+    <Separator prefWidth="180"/>
+
+    <!-- Menu -->
+    <Button fx:id="btnDashboard" text="🏠  Dashboard"
+            onAction="#goDashboard" focusTraversable="false" maxWidth="Infinity"/>
+    <Button fx:id="btnAnggota" text="👥  Anggota"
+            onAction="#goAnggota" focusTraversable="false" maxWidth="Infinity"/>
+    <Button fx:id="btnBuku" text="📚  Buku"
+            onAction="#goBuku" focusTraversable="false" maxWidth="Infinity"/>
+    <Button fx:id="btnPeminjaman" text="🧾  Peminjaman"
+            onAction="#goPeminjaman" focusTraversable="false" maxWidth="Infinity"/>
+    <Button fx:id="btnPengembalian" text="↩️  Pengembalian"
+            onAction="#goPengembalian" focusTraversable="false" maxWidth="Infinity"/>
+    <Button fx:id="btnDenda" text="💰  Denda"
+            onAction="#goDenda" focusTraversable="false" maxWidth="Infinity"/>
+
+    <Region VBox.vgrow="ALWAYS"/>
+</VBox>

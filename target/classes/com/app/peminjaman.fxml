@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.controller.PeminjamanController">
+
+    <!-- ================= SIDEBAR ================= -->
+        <left>
+            <VBox fx:id="sidebarContainer"/>
+        </left>
+
+    <!-- ================= CONTENT ================= -->
+    <center>
+        <StackPane style="-fx-background-color: linear-gradient(to bottom, #050c3a, #0b1d63);">
+            <VBox spacing="18" alignment="CENTER"
+                  maxWidth="520"
+                  style="-fx-padding:40;">
+
+                <Label text="PEMINJAMAN"
+                       style="-fx-font-size:28; -fx-font-weight:bold; -fx-text-fill:white;"/>
+
+                <TextField fx:id="txtNama"
+                            promptText="Nama Lengkap"
+                            maxWidth="Infinity"
+                            prefHeight="40"
+                            style="-fx-font-size:14;"/>
+
+                <TextField fx:id="txtNpm"
+                          promptText="NPM"
+                          maxWidth="Infinity"
+                          prefHeight="40"
+                          style="-fx-font-size:14;"/>
+
+                <TextField fx:id="txtJudulBuku"
+                          promptText="Judul Buku"
+                          maxWidth="Infinity"
+                          prefHeight="40"
+                          style="-fx-font-size:14;"/>
+
+                <DatePicker fx:id="dpTanggalPinjam"
+                            maxWidth="Infinity"
+                            prefHeight="40"
+                            style="-fx-font-size:14;"/>
+
+                <Button text="AJUKAN PEMINJAMAN"
+                        onAction="#handleAjukanPeminjaman"
+                        prefHeight="48"
+                        maxWidth="Infinity"
+                        style="
+                            -fx-background-color:#a7e8ff;
+                            -fx-font-size:16;
+                            -fx-font-weight:bold;
+                        "/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

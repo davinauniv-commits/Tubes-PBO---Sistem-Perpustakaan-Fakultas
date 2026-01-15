@@ -106,7 +106,7 @@ public class DendaController extends BaseController {
                 String namaDB = rs.getString("nama");
                 String npmDB  = rs.getString("npm");
 
-                // kalau user mengisi nama, validasi harus sama dengan yang ada di DB (case-insensitive)
+                // user mengisi nama, validasi harus sama dengan yang ada di DB 
                 if (!namaInput.isBlank() && (namaDB == null || !namaDB.equalsIgnoreCase(namaInput))) {
                     clearResult("Nama tidak cocok dengan NPM di database.");
                     showAlert(Alert.AlertType.WARNING, "Validasi",
@@ -121,7 +121,7 @@ public class DendaController extends BaseController {
                 long jumlah   = rs.getLong("jumlah_denda");
                 String status = rs.getString("status_denda");
 
-                // isi ulang input agar rapi sesuai DB
+                // isi ulang input 
                 if (txtNama != null) txtNama.setText(namaDB != null ? namaDB : "");
                 if (txtNpm != null) txtNpm.setText(npmDB != null ? npmDB : npmInput);
                 if (dpTglPinjam != null) dpTglPinjam.setValue(tglSql != null ? tglSql.toLocalDate() : tglInput);
@@ -159,7 +159,7 @@ public class DendaController extends BaseController {
         confirm.setHeaderText(null);
         if (confirm.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) return;
 
-        String sql = "UPDATE denda SET status_denda='Tidak Ada' WHERE id_denda=?";
+        String sql = "UPDATE denda SET status_denda='Sudah Dibayar', jumlah_denda=0 WHERE id_denda=?";
 
         try (Connection conn = Database.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

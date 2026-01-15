@@ -15,7 +15,7 @@ public class MainFX extends Application {
         stage.setTitle("Login - Sistem Perpustakaan");
 
         stage.show();
-        WindowUtil.forceFull(stage); // ✅ full layar sejak awal
+        WindowUtil.forceFull(stage); 
     }
 
     public static void main(String[] args) {

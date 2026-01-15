@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.app.controller.BukuDipinjamController"
+            style="-fx-background-color:#0a043c;">
+
+    <!-- ================= SIDEBAR ================= -->
+    <left>
+        <VBox fx:id="sidebarContainer"/>
+    </left>
+
+    <center>
+        <VBox spacing="18" style="-fx-padding:28;">
+
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="DAFTAR BUKU SEDANG DIPINJAM"
+                       style="-fx-text-fill:white; -fx-font-size:26; -fx-font-weight:bold;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Refresh" onAction="#handleRefresh"
+                        style="-fx-background-color:white; -fx-font-weight:bold;"/>
+            </HBox>
+
+            <Label fx:id="lblInfo"
+                   text=""
+                   style="-fx-text-fill:#ffdddd; -fx-font-size:12;"/>
+
+            <VBox style="-fx-background-color:white; -fx-background-radius:10; -fx-padding:16;">
+                <TableView fx:id="tblDipinjam" prefHeight="520">
+                    <columns>
+                        <TableColumn fx:id="colNo" text="No" prefWidth="60"/>
+                        <TableColumn fx:id="colNama" text="Nama" prefWidth="260"/>
+                        <TableColumn fx:id="colNpm" text="NPM" prefWidth="160"/>
+                        <TableColumn fx:id="colJudul" text="Judul Buku" prefWidth="260"/>
+                        <TableColumn fx:id="colJumlah" text="Jumlah" prefWidth="90"/>
+                        <TableColumn fx:id="colTglPinjam" text="Tgl Pinjam" prefWidth="140"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>

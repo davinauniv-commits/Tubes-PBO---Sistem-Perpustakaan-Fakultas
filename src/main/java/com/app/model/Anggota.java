@@ -11,8 +11,6 @@ public class Anggota {
     private final StringProperty noHp = new SimpleStringProperty();
     private final StringProperty email = new SimpleStringProperty();
 
-    // constructor sesuai query:
-    // (int, String, String, String, String, String)
     public Anggota(int idAnggota, String nama, String jurusan, String npm, String noHp, String email) {
         this.idAnggota.set(idAnggota);
         this.nama.set(nama);

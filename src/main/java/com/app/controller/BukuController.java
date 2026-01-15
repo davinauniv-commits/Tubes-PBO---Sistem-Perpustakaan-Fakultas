@@ -11,7 +11,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 import java.sql.Connection;
@@ -21,7 +20,6 @@ import java.sql.ResultSet;
 public class BukuController extends BaseController {
 
     @FXML private VBox sidebarContainer;
-
 
     @FXML private TextField txtSearch;
 
@@ -35,9 +33,13 @@ public class BukuController extends BaseController {
 
     private final ObservableList<Buku> data = FXCollections.observableArrayList();
 
+    // deklarasi variabel biar bisa dipakai di initialize()
+    private boolean searchActivated = false;
+
     @FXML
     public void initialize() {
-        attachSidebar(sidebarContainer, "buku");  
+        attachSidebar(sidebarContainer, "buku");
+
         if (tblBuku != null) {
             tblBuku.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tblBuku.setItems(data);
@@ -53,20 +55,20 @@ public class BukuController extends BaseController {
         loadBuku("");
 
         if (txtSearch != null) {
-                    // Placeholder
-                    txtSearch.setPromptText("Search");
-                    txtSearch.clear();
+            // Placeholder
+            txtSearch.setPromptText("Search");
+            txtSearch.clear();
 
-                    // Realtime search 
-                    txtSearch.focusedProperty().addListener((obs, wasFocused, isFocused) -> {
-                        if (isFocused && !searchActivated) {
-                            searchActivated = true;
+            // Realtime search (aktif sekali saja)
+            txtSearch.focusedProperty().addListener((obs, wasFocused, isFocused) -> {
+                if (isFocused && !searchActivated) {
+                    searchActivated = true;
 
-                            txtSearch.textProperty().addListener((o, oldText, newText) -> {
-                                loadBuku(newText);
-                            });
-                        }
+                    txtSearch.textProperty().addListener((o, oldText, newText) -> {
+                        loadBuku(newText);
                     });
+                }
+            });
         }
     }
 

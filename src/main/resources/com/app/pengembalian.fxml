@@ -42,6 +42,7 @@
                            style="-fx-font-size:14;"/>
 
                 <DatePicker fx:id="dpTanggalKembali"
+                            promptText="Tanggal Kembali"
                             maxWidth="Infinity"
                             prefHeight="40"
                             style="-fx-font-size:14;"/>

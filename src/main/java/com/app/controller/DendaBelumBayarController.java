@@ -5,19 +5,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 import java.sql.Connection;
@@ -39,10 +32,12 @@ public class DendaBelumBayarController extends BaseController {
     private final ObservableList<Row> data = FXCollections.observableArrayList();
     private int currentAdminId = 0;
 
+    private long grandTotalBelumBayar = 0;
+
     @FXML
     public void initialize() {
-        attachSidebar(sidebarContainer, "denda_belum_bayar"); 
-        // kolom full lebar
+        attachSidebar(sidebarContainer, "denda_belum_bayar");
+
         if (tblDenda != null) {
             tblDenda.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             tblDenda.setItems(data);
@@ -74,6 +69,10 @@ public class DendaBelumBayarController extends BaseController {
         this.currentAdminId = id;
     }
 
+    public long getGrandTotalBelumBayar() {
+        return grandTotalBelumBayar;
+    }
+
     @FXML
     private void handleRefresh() {
         loadData();
@@ -81,7 +80,9 @@ public class DendaBelumBayarController extends BaseController {
 
     private void loadData() {
         data.clear();
+        grandTotalBelumBayar = 0;
 
+        // belum dibayar + jumlah_denda > 0
         String sql =
                 "SELECT a.id_anggota, a.nama, a.npm, " +
                 "       COUNT(d.id_denda) AS jumlah_denda, " +
@@ -90,6 +91,7 @@ public class DendaBelumBayarController extends BaseController {
                 "JOIN peminjaman p ON d.id_peminjaman = p.id_peminjaman " +
                 "JOIN anggota a ON p.id_anggota = a.id_anggota " +
                 "WHERE d.status_denda = 'Belum Dibayar' " +
+                "  AND d.jumlah_denda > 0 " +
                 "GROUP BY a.id_anggota, a.nama, a.npm " +
                 "ORDER BY total_denda DESC";
 
@@ -104,12 +106,17 @@ public class DendaBelumBayarController extends BaseController {
                 int jumlahKasus = rs.getInt("jumlah_denda");
                 long total = rs.getLong("total_denda");
 
+                grandTotalBelumBayar += total;
                 data.add(new Row(no++, nama, npm, jumlahKasus, rupiah(total)));
             }
 
-            safeSet(lblInfo, data.isEmpty()
-                    ? "Tidak ada denda yang berstatus 'Belum Dibayar'."
-                    : "Total anggota yang memiliki denda: " + data.size());
+            if (data.isEmpty()) {
+                safeSet(lblInfo, "Tidak ada denda yang berstatus 'Belum Dibayar'.");
+            } else {
+                safeSet(lblInfo,
+                        "Total anggota memiliki denda: " + data.size() +
+                        " | Total denda belum bayar: " + rupiah(grandTotalBelumBayar));
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

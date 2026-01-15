@@ -44,7 +44,6 @@ public class DashboardController extends BaseController {
         safeSet(lblInfoTelp, "-");
         safeSet(lblStatus, "");
 
-        // kalau admin sudah login sebelumnya, load lagi datanya saat dashboard dibuka
         if (currentAdminId > 0) {
             loadCards();
             loadAdminInfo();
@@ -146,5 +145,11 @@ public class DashboardController extends BaseController {
     private void openDendaBelumBayar(ActionEvent e) {
         switchScene(e, "/com/app/denda_belum_bayar.fxml");
     }
+
+    @FXML
+    private void openBukuDipinjam(ActionEvent e) {
+        switchScene(e, "/com/app/buku_dipinjam.fxml");
+    }
 }
+
 
